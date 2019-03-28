@@ -16,12 +16,20 @@ function love.draw()
 end
 
 function love.update()
-
+  game_update()
 end
 
 function love.keypressed(key)
   -- press ESC to close the window
   if key == 'escape' then
     love.event.quit()
+  elseif key == 'up' then
+    up, down, left, right = true, false, false, false
+  elseif key == 'down' then
+    up, down, left, right = false, true, false, false
+  elseif key == 'left' then
+    up, down, left, right = false, false, true, false
+  elseif key == 'right' then
+    up, down, left, right = false, false, false, true
   end
 end
