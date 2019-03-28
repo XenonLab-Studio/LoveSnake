@@ -11,6 +11,7 @@ local dir_y = 0
 local SIZE = 30
 local apple_x = 0
 local apple_y = 0
+local tail_length = 0
 
 up = false
 down = false
@@ -44,8 +45,24 @@ function game_update()
     dir_x, dir_y = 1, 0
     end
 
-snake_x = snake_x + dir_x
-snake_y = snake_y + dir_y
+  snake_x = snake_x + dir_x
+  snake_y = snake_y + dir_y
+
+  if snake_x == apple_x and snake_y == apple_y then
+    add_apple()
+    tail_length = tail_length + 1
+  end
+  
+  -- Snake off-screen respawn
+  if snake_x < 0 then
+    snake_x = SIZE -1
+  elseif snake_x > SIZE -1 then
+    snake_x = 0
+  elseif snake_y < 0 then
+    snake_y = SIZE -1
+  elseif snake_y > SIZE -1 then
+    snake_y = 0
+  end
 end
 
 function game_restart()
