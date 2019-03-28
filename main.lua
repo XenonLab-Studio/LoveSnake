@@ -8,6 +8,9 @@ require ('functions')
 function love.load()
   love.window.setPosition(390, 150, 1)
   love.graphics.newFont("res/PressStart2P.ttf", 25) -- the number denotes the font size
+  
+  interval = 20
+  add_apple()
 end
 
 function love.draw()
@@ -16,7 +19,13 @@ function love.draw()
 end
 
 function love.update()
-  game_update()
+  -- Apply a range for moving by simulating a game grid.
+  -- the "interval = 20" value indicates the displacement pixels.
+  interval = interval - 1
+  if interval < 0 then
+    game_update()
+    interval = 20
+  end
 end
 
 function love.keypressed(key)

@@ -8,18 +8,28 @@ local snake_y = 15
 local dir_x = 0
 local dir_y = 0
 
+local SIZE = 30
+local apple_x = 0
+local apple_y = 0
+
 up = false
 down = false
 left = false
 right = false
 
 function add_apple()
-
+  math.randomseed(os.time())
+  apple_x = math.random(SIZE-1)
+  apple_y = math.random(SIZE-1)
 end
 
 function game_draw()
-  love.graphics.setColor(1.0, 0.35, 0.4, 1.0)
-  love.graphics.rectangle('fill', snake_x*26, snake_y*26, 30, 30, 10, 10)
+  love.graphics.setColor(0, 0.7, 0, 1.0)
+  love.graphics.rectangle('fill', snake_x*SIZE, snake_y*SIZE, 30, 30, 10, 10)
+  love.graphics.reset()
+  
+  love.graphics.setColor(0.8, 0.9, 0, 1.0)
+  love.graphics.rectangle('fill', apple_x*SIZE, apple_y*SIZE, 30, 30, 10, 10)
   love.graphics.reset()
 end
 
